@@ -1,6 +1,8 @@
 package cell;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 
 public class Cell {
     //instance variables
@@ -8,6 +10,11 @@ public class Cell {
     private int x; //The x coordinate of the cell; x >= 0
     private int y; //The x coordinate of the cell; y >= 0
     private int id; //This will be used to distinguish between different cell types; id >= 0
+    private ArrayList<Cell> neighbors; //Neighboring cells
+    private HashMap<String,Double> concentration; //This tracks the concentration of various chemicals
+    private HashSet<String> signal; //This keep track of signal molecules your cell type interacts with
+
+
 
     //default constructor
     public Cell() {
@@ -82,8 +89,25 @@ public class Cell {
         }
     }
 
-    //method
-    public void interactNeighbors(ArrayList<Cell> neighbors){
+    public HashMap<String, Double> getConcentration() {
+        return concentration;
+    }
 
+    //returns concentration of a given chemical
+    public double getConc(String chemical) {
+        return this.concentration.get(chemical);
+    }
+
+    public HashSet<String> getSignal() {
+        return signal;
+    }
+
+    //methods
+    public void interactNeighbors(ArrayList<Cell> neighbors){ // if there are >=6 adjacent cells, the cell dies
+        /*
+        if (neighbors.size() >= 6) {
+            this.id = 0;
+        }
+        */
     }
 }
